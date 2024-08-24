@@ -19,31 +19,47 @@ import java.io.IOException;
 
 public class Controller {
 
+
+    @FXML
+    private Stage stage;
+
+    @FXML
+    private Scene scene ;
+
+    @FXML
+    private Parent root;
+
     @FXML
     private  Button student_pg, teacher_pg, courses_pg, transport_pg, classes_pg, fees_pg;
     pageHandler pg = new pageHandler();
 
 
     @FXML
-    protected void changePage(ActionEvent event) {
+    protected void changePage(ActionEvent event) throws  IOException{
         if (event.getSource() == student_pg){
-            pg.toPage("student");
+            pg.page = "students";
         }
 
         if (event.getSource() == teacher_pg){
-            pg.toPage("teacher");
+            pg.page = "teachers";
         }
         if (event.getSource() == courses_pg){
-            pg.toPage("courses");
+            pg.page = "courses";
         }
         if (event.getSource() == transport_pg){
-            pg.toPage("transport");
+            pg.page = "transport";
         }
         if (event.getSource() == classes_pg){
-            pg.toPage("classes");
+            pg.page = "classes";
         }
         if (event.getSource() == fees_pg){
-            pg.toPage("fees");
+            pg.page = "fees";
         }
+
+        root = FXMLLoader.load(getClass().getResource("dataPage.fxml"));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
