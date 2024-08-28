@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -15,6 +16,11 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.util.ArrayList;
 
 
 public class Controller {
@@ -29,31 +35,41 @@ public class Controller {
     @FXML
     private Parent root;
 
+    private String page = "";
+
     @FXML
     private  Button student_pg, teacher_pg, courses_pg, transport_pg, classes_pg, fees_pg;
-    pageHandler pg = new pageHandler();
+
+    @FXML
+    private ListView<String> myListView;
+
+    private String table = "";
+
+    @FXML
+    private ListView <String> listView;
 
 
     @FXML
-    protected void changePage(ActionEvent event) throws  IOException{
-        if (event.getSource() == student_pg){
-            pg.page = "students";
-        }
+    protected String changePage(ActionEvent event) throws  IOException{
 
-        if (event.getSource() == teacher_pg){
-            pg.page = "teachers";
+        listView = new ListView<>();
+
+        if (event.getSource() == student_pg){
+            table = "teacher";
+            listView.getItems().add("burger");
         }
         if (event.getSource() == courses_pg){
-            pg.page = "courses";
+//            pg.table("students");
+            table = "teacher";
         }
         if (event.getSource() == transport_pg){
-            pg.page = "transport";
+//            pg.table("students");
         }
         if (event.getSource() == classes_pg){
-            pg.page = "classes";
+//            pg.table("students");
         }
         if (event.getSource() == fees_pg){
-            pg.page = "fees";
+//            pg.table("students");
         }
 
         root = FXMLLoader.load(getClass().getResource("dataPage.fxml"));
@@ -61,5 +77,13 @@ public class Controller {
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+
+        return table;
     }
+
+    public String call () {
+        return table;
+    }
+
+
 }
