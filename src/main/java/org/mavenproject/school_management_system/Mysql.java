@@ -17,26 +17,27 @@ public class Mysql {
 
     public String[] table(String table) {
 
+        System.out.println("Checking " + table + "table");
         ArrayList<String> list = new ArrayList<>();
         String result[] = new String[list.size()];
-        String sql = "Select * from ?";
+        String sql = "Select * from $table";
+
         try {
             Connection connection = DriverManager.getConnection(url, user, password);
             Statement statement = connection.createStatement();
-            statement.executeQuery("Select * from students");
-//            PreparedStatement ps = null;
-//            ResultSet resultSet = ps.executeQuery();
+
+            String query = sql.replace("$table",table);
+            System.out.println(query);
+            statement.executeQuery(query);
+
             ResultSet resultSet = statement.getResultSet();
 
-//            ps = connection.prepareStatement(sql);
-//            ps.setString(1,table);
-
             while (resultSet.next()) {
-                id = resultSet.getInt("id");
+//                id = resultSet.getInt("id");
                 name = resultSet.getString("name");
-                clss = resultSet.getInt("class");
-                section = resultSet.getString("section");
-                admission_no = resultSet.getInt("admission_number");
+//                clss = resultSet.getInt("class");
+//                section = resultSet.getString("section");
+//                admission_no = resultSet.getInt("admission_number");
 
 //                System.out.println(resultSet.getString("id") + " : " + resultSet.getString("name") + " : " + resultSet.getString("class"));
                 list.add(name);
