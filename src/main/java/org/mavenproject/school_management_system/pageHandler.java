@@ -12,6 +12,7 @@ import javafx.scene.*;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -21,10 +22,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+
 public class pageHandler implements Initializable {
 
     @FXML
     private Stage stage;
+
+    @FXML
+    private JButton student_pg = new JButton();
 
     @FXML
     private Scene scene;
@@ -35,64 +40,16 @@ public class pageHandler implements Initializable {
     @FXML
     private ListView<String> myListView;
 
+    ActionEvent event = new ActionEvent();
 
-    private String url = "jdbc:mysql://127.0.0.1:3306/school_management";
-    private String user = "ben";
-    private String password = "example-password";
-    String name = "";
-
-    private ArrayList<String> list ;
-
-    @FXML
-    private ListView <String> listView;
 
     Controller ctrl = new Controller();
 
 
-
-    public ArrayList<String>table(String table) {
-        System.out.println("hello");
-
-        list = new ArrayList<>();
-
-        String sql = "Select * from $table";
-
-        try {
-            Connection connection = DriverManager.getConnection(url, user, password);
-            Statement statement = connection.createStatement();
-
-            String query = sql.replace("$table",table);
-            statement.executeQuery(query);
-
-            ResultSet resultSet = statement.getResultSet();
-
-            while (resultSet.next()) {
-                list.add(resultSet.getString("name"));
-            }
-            for (String item : list){
-                System.out.println(item);
-            }
-
-//            listView.getItems().addAll(list);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return list;
-    }
-
-    public void infoPage(ActionEvent event) throws  IOException {
-        root = FXMLLoader.load(getClass().getResource("personInfo.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-//        pageHandler pg = new pageHandler();
-//
-//        myListView.getItems().addAll(pg.table(ctrl.call()));
+
+//        myListView.getItems().addAll(ctrl.studentPage()); // Getting data from student Page which is a button which will take the list of values from mysql and add it to the list
 //        myListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
 //            @Override
 //            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -100,34 +57,5 @@ public class pageHandler implements Initializable {
 //            }
 //        });
     }
-
-//@Override
-//    public void initialize(URL location, ResourceBundle resourceBundle) {
-//        String list[] = new String[4];
-//        String sql = "Select * from $table";
-//        try{
-//            Connection connection = DriverManager.getConnection(url,user,password);
-//            Statement statement = connection.createStatement();
-//
-//            String query = sql.replace("$table","students");
-//            statement.executeQuery(query);
-//
-////            ResultSet resultSet = statement.getResultSet();
-////
-////            while(resultSet.next()){
-////
-////            }
-////        }catch(Exception e){
-////            e.printStackTrace();
-////        }
-////        myListView.getItems().addAll(list);
-////        myListView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-////            @Override
-////            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-////                System.out.println(myListView.getSelectionModel().getSelectedItem());
-////            }
-//        });
-//    }
-
 
 }
