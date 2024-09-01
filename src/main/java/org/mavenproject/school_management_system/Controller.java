@@ -48,7 +48,7 @@ public class Controller {
     @FXML
     protected void changePage(ActionEvent event) throws IOException{
 // Function to change page
-            root = FXMLLoader.load(getClass().getResource("dataPage.fxml"));
+            root = FXMLLoader.load(getClass().getResource("StudentPage.fxml"));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             scene = new Scene(root);
             stage.setScene(scene);
@@ -61,7 +61,7 @@ public class Controller {
         myListView = new ListView<>();
         myListView.setItems(names);
 
-        root = FXMLLoader.load(getClass().getResource("dataPage.fxml"));
+        root = FXMLLoader.load(getClass().getResource("StudentPage.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
