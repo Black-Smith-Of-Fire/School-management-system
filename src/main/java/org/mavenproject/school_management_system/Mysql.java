@@ -10,10 +10,10 @@ public class Mysql {
     private String user = "ben";
     private String password = "example-password";
 
-    private ArrayList<String> list;
-    public ArrayList<String>table(String table) {
+    private ArrayList<String> list; // the list to contain the data from the database school_management
 
-        System.out.println("hello");
+
+    public ArrayList<String>table(String table) { // Method that returns the mysql table data as asked within the parameters
 
         list = new ArrayList<>();
 
@@ -30,9 +30,6 @@ public class Mysql {
 
             while (resultSet.next()) {
                 list.add(resultSet.getString("name"));
-            }
-            for (String item : list){
-                System.out.println(item);
             }
 
 //            listView.getItems().addAll(list);
