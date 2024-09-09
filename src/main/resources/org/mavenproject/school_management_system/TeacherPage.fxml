@@ -33,7 +33,7 @@
                   </ScrollPane>
                   <VBox layoutY="-1.0" prefHeight="702.0" prefWidth="147.0" style="-fx-background-color: #484848;">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="147.0" stylesheets="@styles.css" text="Teacher">
+                        <Button fx:id="switch_student_pg" mnemonicParsing="false" prefHeight="75.0" prefWidth="147.0" stylesheets="@styles.css" text="Student">
                            <graphic>
                               <ImageView fitHeight="57.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -41,7 +41,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="147.0" stylesheets="@styles.css" text="Transport">
+                        <Button fx:id="switch_transport_pg" mnemonicParsing="false" prefHeight="75.0" prefWidth="147.0" stylesheets="@styles.css" text="Transport">
                            <graphic>
                               <ImageView fitHeight="53.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -49,7 +49,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="147.0" stylesheets="@styles.css" text="Course">
+                        <Button fx:id="switch_course_pg" mnemonicParsing="false" prefHeight="75.0" prefWidth="147.0" stylesheets="@styles.css" text="Course">
                            <graphic>
                               <ImageView fitHeight="54.0" fitWidth="33.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -57,7 +57,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="147.0" stylesheets="@styles.css" text="Fees">
+                        <Button fx:id="switch_fees_pg" mnemonicParsing="false" prefHeight="75.0" prefWidth="147.0" stylesheets="@styles.css" text="Fees">
                            <graphic>
                               <ImageView fitHeight="49.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -65,7 +65,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Button mnemonicParsing="false" prefHeight="75.0" prefWidth="147.0" stylesheets="@styles.css" text="Home">
+                        <Button fx:id="switch_home_pg" mnemonicParsing="false" prefHeight="75.0" prefWidth="147.0" stylesheets="@styles.css" text="Home">
                            <graphic>
                               <ImageView fitHeight="51.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
