@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox fx:id="item_box" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="69.0" prefWidth="455.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="imageView" fitHeight="64.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@darth.png" />
+         </image></ImageView>
+      <Label fx:id="darth_label" alignment="CENTER" prefHeight="50.0" prefWidth="271.0" text="Darth Vader" textAlignment="CENTER" />
+   </children>
+</HBox>

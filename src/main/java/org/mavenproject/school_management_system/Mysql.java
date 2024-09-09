@@ -9,17 +9,14 @@ public class Mysql {
     private String url = "jdbc:mysql://127.0.0.1:3306/school_management";
     private String user = "ben";
     private String password = "example-password";
-    String name = "",section;
-    int clss ,admission_no;
-    int id;
-    int age ;
+
+    private ArrayList<String> list; // the list to contain the data from the database school_management
 
 
-    public String[] table(String table) {
+    public ArrayList<String>table(String table) { // Method that returns the mysql table data as asked within the parameters
 
-        System.out.println("Checking " + table + "table");
-        ArrayList<String> list = new ArrayList<>();
-        String result[] = new String[list.size()];
+        list = new ArrayList<>();
+
         String sql = "Select * from $table";
 
         try {
@@ -27,62 +24,18 @@ public class Mysql {
             Statement statement = connection.createStatement();
 
             String query = sql.replace("$table",table);
-            System.out.println(query);
             statement.executeQuery(query);
 
             ResultSet resultSet = statement.getResultSet();
 
             while (resultSet.next()) {
-//                id = resultSet.getInt("id");
-                name = resultSet.getString("name");
-//                clss = resultSet.getInt("class");
-//                section = resultSet.getString("section");
-//                admission_no = resultSet.getInt("admission_number");
-
-//                System.out.println(resultSet.getString("id") + " : " + resultSet.getString("name") + " : " + resultSet.getString("class"));
-                list.add(name);
-
+                list.add(resultSet.getString("name"));
             }
-            //Putting the values in a list
-            result = list.toArray(result);
 
-            for(int i =0; i<result.length; i++){
-                System.out.println(result[i]);
-            }
+//            listView.getItems().addAll(list);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return result;
-    }
-
-    // Method to insert data
-    public void insert (String name , String subject, int age) {
-
-        String query = "";
-
-        try {
-            Connection connection = DriverManager.getConnection(url,user,password);
-            Statement statement = connection.createStatement();
-
-            query = "Insert into teachers values (?,?,?);";
-
-            PreparedStatement values = connection.prepareStatement(query);
-//                values.setInt(1, id);
-                values.setString(2, name);
-                values.setString(2, subject);
-                values.setInt(3, age);
-//                values.setInt(4, phone);
-
-            values.executeUpdate();
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-
-    }
-
-    // Method to receive data
-    public void showData (String query) {
-
+        return list;
     }
 }

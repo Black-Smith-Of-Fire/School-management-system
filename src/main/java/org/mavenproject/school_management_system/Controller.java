@@ -1,5 +1,9 @@
 package org.mavenproject.school_management_system;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -35,55 +39,33 @@ public class Controller {
     @FXML
     private Parent root;
 
-    private String page = "";
-
-    @FXML
-    private  Button student_pg, teacher_pg, courses_pg, transport_pg, classes_pg, fees_pg;
-
     @FXML
     private ListView<String> myListView;
 
-    private String table = "";
-
-    @FXML
-    private ListView <String> listView;
+    Mysql mysql = new Mysql();
 
 
     @FXML
-    protected String changePage(ActionEvent event) throws  IOException{
+    protected void changePage(ActionEvent event) throws IOException{
+// Function to change page
+            root = FXMLLoader.load(getClass().getResource("StudentPage.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+    }
 
-        listView = new ListView<>();
+    @FXML
+    public void studentPage(ActionEvent event) throws  IOException{ // This will return a string array list which will be used by the listview
+        ObservableList<String> names = FXCollections.observableArrayList("Engineering", "MCA", "MBA", "Graduation", "MTECH", "Mphil", "Phd");
+        myListView = new ListView<>();
+        myListView.setItems(names);
 
-        if (event.getSource() == student_pg){
-            table = "teacher";
-            listView.getItems().add("burger");
-        }
-        if (event.getSource() == courses_pg){
-//            pg.table("students");
-            table = "teacher";
-        }
-        if (event.getSource() == transport_pg){
-//            pg.table("students");
-        }
-        if (event.getSource() == classes_pg){
-//            pg.table("students");
-        }
-        if (event.getSource() == fees_pg){
-//            pg.table("students");
-        }
-
-        root = FXMLLoader.load(getClass().getResource("dataPage.fxml"));
+        root = FXMLLoader.load(getClass().getResource("StudentPage.fxml"));
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-
-        return table;
     }
-
-    public String call () {
-        return table;
-    }
-
 
 }

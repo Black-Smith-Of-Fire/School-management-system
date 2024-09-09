@@ -1,0 +1,26 @@
+.button{
+-fx-background-color: #484848;
+border:none;
+-fx-background-radius: 2em;
+}
+
+
+.button : hover {
+-fx-background-color: #FFFFFF;
+}
+
+.textfield{
+-fx-background-radius:2em;
+}
+
+.scrollbar{
+width: 5px
+}
+
+.scrollbar-track{
+background: #d1e5ff;
+}
+
+.button: pressed {
+-fx-background-color: #165DDB;
+}
