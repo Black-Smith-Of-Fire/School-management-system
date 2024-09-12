@@ -31,7 +31,7 @@
                      <content>
                         <VBox fx:id="vbox" prefHeight="642.0" prefWidth="437.0" style="-fx-background-color: #000000;" styleClass="vbox" stylesheets="@styles.css">
                            <children>
-                              <ListView fx:id="list_view" prefHeight="622.0" prefWidth="437.0" />
+                              <ListView fx:id="listView" prefHeight="622.0" prefWidth="437.0" />
                            </children></VBox>
                      </content>
                   </ScrollPane>
@@ -124,6 +124,7 @@
                         </BorderPane>
                      </children>
                   </GridPane>
+                  <Button fx:id="edit" layoutX="263.0" layoutY="558.0" mnemonicParsing="false" onAction="#edit" text="Edit" />
                </children></AnchorPane>
          </items>
       </SplitPane>
