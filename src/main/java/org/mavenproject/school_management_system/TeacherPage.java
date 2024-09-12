@@ -1,5 +1,7 @@
 package org.mavenproject.school_management_system;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,19 +10,20 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import javax.swing.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class TeacherPage implements Initializable {
-
-    @FXML
-    private VBox vbox;
 
     @FXML
     private Scene scene;
@@ -29,40 +32,47 @@ public class TeacherPage implements Initializable {
     private Stage stage;
 
     @FXML
-    private AnchorPane pane1;
+    private ListView<String> listView;
 
     @FXML
-    public static Label darth_label = new Label();
+    private TextField name_field;
 
+    @FXML
+    private TextField dob_field;
+
+    @FXML
+    private  TextField reg_field;
+
+    String night[] = {"jeor","mormont"};
     Mysql mysql = new Mysql();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) { // Should load the data into the vbox
-        FXMLLoader loader = new FXMLLoader();
-        ArrayList<String> list = new ArrayList<>();
-
-        list.addAll(mysql.table("teachers"));
-
-        Controller controller = loader.getController();
-
-        try{
-            Node[] node = new Node[list.size()];
-
-            for (int i = 0; i < node.length; i++) {
-                darth_label.setText("lol");
-                node[i] = FXMLLoader.load(getClass().getResource("item.fxml"));
-                vbox.getChildren().add(node[i]); // Supposed to add items in a vbox
+        listView.getItems().addAll(mysql.table("teachers"));
+        listView.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                String selection = listView.getSelectionModel().getSelectedItem();
+                name_field.setText(mysql.data("teachers","name",selection));
+                dob_field.setText(mysql.data("teachers","dob",selection));
+                reg_field.setText(mysql.data("teachers","id_no",selection));
             }
-
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        });
     }
 
     @FXML
-    private void menu(){
-        System.out.println("menu working");
+    private void edit(){
+        String dob = dob_field.getText();
+        String id_no = reg_field.getText();
+        String name = name_field.getText();
 
+        String columns[] = {"name", "dob", "id_no"};
+        String column_values[] = {name,dob,id_no};
+
+        for (int i = 0; i < columns.length; i++) {
+            mysql.editSql("teachers",columns[i],name,column_values[i]);
+        }
+//        mysql.editSql("teachers","id_no",name,id_no);
     }
 
     @FXML
